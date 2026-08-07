@@ -85,6 +85,19 @@
         .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4); }
         .btn-outline { background: transparent; color: var(--text-primary); padding: 0.9rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s; border: 2px solid var(--border); }
         .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+        
+        .community-section { max-width: 800px; margin: 4rem auto; padding: 3rem 2rem; background: linear-gradient(135deg, rgba(91, 155, 213, 0.1) 0%, rgba(212, 175, 55, 0.1) 100%); border-radius: 20px; border: 2px solid var(--accent); text-align: center; position: relative; overflow: hidden; }
+        .community-section::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, #5B9BD5, #d4af37, #2ecc71); }
+        .community-section i { font-size: 2.5rem; color: var(--accent); margin-bottom: 1rem; }
+        .community-section h3 { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 0.8rem; }
+        .community-section p { color: var(--text-secondary); margin-bottom: 2rem; }
+        .community-stats { display: flex; justify-content: center; gap: 2rem; margin: 1.5rem 0; flex-wrap: wrap; }
+        .community-stat { text-align: center; }
+        .community-stat-value { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: var(--accent); }
+        .community-stat-label { font-size: 0.8rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; }
+        .btn-community { background: linear-gradient(135deg, #5B9BD5 0%, #4A90E2 100%); color: white; padding: 0.9rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s; box-shadow: 0 5px 20px rgba(91, 155, 213, 0.3); }
+        .btn-community:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(91, 155, 213, 0.5); }
+        
         footer { background: var(--bg-secondary); padding: 2rem 5%; text-align: center; border-top: 1px solid var(--border); }
         footer p { color: var(--text-secondary); font-size: 0.9rem; }
         .no-results { text-align: center; padding: 4rem 2rem; color: var(--text-secondary); display: none; }
@@ -95,6 +108,7 @@
             .stats-strip { gap: 1.5rem; padding: 1rem; } .stat-box .stat-number { font-size: 1.4rem; }
             .articles-grid { grid-template-columns: 1fr; } .page-header h1 { font-size: 2rem; }
             .search-filter-section { flex-direction: column; } .search-box { max-width: 100%; }
+            .community-stats { gap: 1rem; } .community-stat-value { font-size: 1.4rem; }
         }
     </style>
 </head>
@@ -110,6 +124,7 @@
                 <li><a href="https://sbmousavices.github.io/Industrial-Tools/EnglishInfo.html#education">Education</a></li>
                 <li><a href="https://sbmousavices.github.io/Industrial-Tools/">Products</a></li>
                 <li><a href="https://sbmousavices.github.io/Articles/" class="active">Articles</a></li>
+                <li><a href="https://sbmousavices.github.io/Industrial-Tools/Community.html">Community</a></li>
                 <li><a href="https://sbmousavices.github.io/Industrial-Tools/EnglishInfo.html#contact">Contact</a></li>
             </ul>
         </div>
@@ -144,7 +159,6 @@
     <section class="articles-container">
         <div class="articles-grid" id="articlesGrid">
             
-            <!-- Article 1: Resource Loading (NEW) -->
             <article class="article-card" data-category="Project Controls" data-keywords="resource loading resource allocation manpower loading resource management resource histograms resource leveling productivity norms earned value s-curve project controls primavera p6 epc planning">
                 <div class="article-banner" style="background: linear-gradient(135deg, #1abc9c 0%, #16a085 100%);">
                     <span class="article-badge">NEW</span>
@@ -170,7 +184,6 @@
                 </div>
             </article>
             
-            <!-- Article 2: Baseline Schedule Development -->
             <article class="article-card" data-category="Project Controls" data-keywords="baseline schedule development project baseline schedule management dcma aace pmi primavera p6 critical path epc planning schedule baseline approval governance">
                 <div class="article-banner" style="background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);">
                     <i class="fas fa-clipboard-check"></i>
@@ -195,7 +208,6 @@
                 </div>
             </article>
             
-            <!-- Article 3: Critical Path Analysis -->
             <article class="article-card" data-category="Scheduling" data-keywords="critical path analysis cpm scheduling float network diagram">
                 <div class="article-banner" style="background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);">
                     <i class="fas fa-project-diagram"></i>
@@ -220,7 +232,6 @@
                 </div>
             </article>
             
-            <!-- Article 4: WBS Development -->
             <article class="article-card" data-category="EPC Planning" data-keywords="wbs development epc projects work breakdown structure engineering procurement construction">
                 <div class="article-banner" style="background: linear-gradient(135deg, #27ae60 0%, #16a085 100%);">
                     <i class="fas fa-sitemap"></i>
@@ -245,7 +256,6 @@
                 </div>
             </article>
             
-            <!-- Article 5: Primavera P6 -->
             <article class="article-card" data-category="Project Controls" data-keywords="primavera p6 scheduling best practices wbs baseline dcma critical path">
                 <div class="article-banner" style="background: linear-gradient(135deg, #3498db 0%, #2c3e50 100%);">
                     <i class="fas fa-calendar-check"></i>
@@ -270,7 +280,6 @@
                 </div>
             </article>
             
-            <!-- Article 6: EPC Project Delay -->
             <article class="article-card" data-category="Risk Management" data-keywords="epc project delay schedule risks critical construction mitigation">
                 <div class="article-banner" style="background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);">
                     <i class="fas fa-exclamation-triangle"></i>
@@ -304,6 +313,31 @@
     </section>
     
     <section class="articles-container">
+        <div class="community-section">
+            <i class="fas fa-users"></i>
+            <h3>Join Our Professional Community</h3>
+            <p>Connect with 500+ industrial engineers and project planners. Get exclusive tools, real-world insights, and networking opportunities across multiple platforms.</p>
+            <div class="community-stats">
+                <div class="community-stat">
+                    <div class="community-stat-value">500+</div>
+                    <div class="community-stat-label">Members</div>
+                </div>
+                <div class="community-stat">
+                    <div class="community-stat-value">6</div>
+                    <div class="community-stat-label">Platforms</div>
+                </div>
+                <div class="community-stat">
+                    <div class="community-stat-value">FREE</div>
+                    <div class="community-stat-label">Starter Kit</div>
+                </div>
+            </div>
+            <a href="https://sbmousavices.github.io/Industrial-Tools/Community.html" class="btn-community">
+                <i class="fas fa-user-plus"></i> Join Community Now
+            </a>
+        </div>
+    </section>
+    
+    <section class="articles-container">
         <div class="newsletter">
             <i class="fas fa-bell"></i>
             <h3>Stay Updated</h3>
@@ -324,7 +358,6 @@
     </footer>
     
     <script>
-        // ============ SEARCH & FILTER ============
         const searchInput = document.getElementById('searchInput');
         const filterPills = document.querySelectorAll('.filter-pill');
         const articleCards = document.querySelectorAll('.article-card');
@@ -356,7 +389,6 @@
             });
         });
         
-        // ============ FORCE DIRECT DOWNLOAD (Blob Method) ============
         function downloadArticle(url, fileName, btn) {
             const originalHTML = btn.innerHTML;
             btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Downloading...';
