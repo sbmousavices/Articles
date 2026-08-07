@@ -18,6 +18,8 @@
             --border: rgba(212, 175, 55, 0.2);
             --gradient: linear-gradient(135deg, #d4af37 0%, #f4d06f 100%);
             --shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+            --hub-color: #9b59b6;
+            --hub-color-light: #bb8fce;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
@@ -55,15 +57,77 @@
         .filter-pill.active { background: var(--gradient); color: var(--bg-primary); border-color: transparent; font-weight: 600; }
         .articles-container { max-width: 1200px; margin: 0 auto; padding: 0 5% 4rem; }
         .articles-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 2rem; }
-        .article-card { background: var(--bg-card); border-radius: 15px; border: 1px solid var(--border); overflow: hidden; transition: all 0.4s; display: flex; flex-direction: column; }
+        .article-card { 
+            background: var(--bg-card); 
+            border-radius: 15px; 
+            border: 1px solid var(--border); 
+            overflow: hidden; 
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
+            display: flex; 
+            flex-direction: column;
+            cursor: pointer;
+            position: relative;
+        }
         .article-card:hover { transform: translateY(-8px); border-color: var(--accent); box-shadow: var(--shadow); }
-        .article-banner { height: 180px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+        .article-card.active {
+            transform: scale(1.03) translateY(-8px);
+            border-color: var(--accent-light);
+            border-width: 2px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.08) 0%, rgba(244, 208, 111, 0.05) 100%);
+            box-shadow: 0 20px 60px rgba(212, 175, 55, 0.3), 0 0 0 1px rgba(212, 175, 55, 0.15);
+            z-index: 10;
+        }
+        .article-card.active .article-banner i {
+            transform: scale(1.15);
+            filter: drop-shadow(0 5px 20px rgba(255, 255, 255, 0.5));
+        }
+        .article-card.active .article-title {
+            color: var(--accent-light);
+        }
+        .article-card.active .article-category {
+            background: rgba(212, 175, 55, 0.25);
+            color: var(--accent-light);
+        }
+        .article-banner { 
+            height: 180px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            position: relative; 
+            overflow: hidden; 
+        }
         .article-banner::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, transparent 70%); }
-        .article-banner i { font-size: 4rem; color: white; z-index: 1; filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3)); }
+        .article-banner i { 
+            font-size: 4rem; 
+            color: white; 
+            z-index: 1; 
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3));
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
         .article-badge { position: absolute; top: 1rem; right: 1rem; background: var(--accent); color: var(--bg-primary); padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; z-index: 2; }
         .article-body { padding: 1.8rem; flex: 1; display: flex; flex-direction: column; }
-        .article-category { display: inline-block; background: rgba(212, 175, 55, 0.15); color: var(--accent); padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.75rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.8rem; width: fit-content; }
-        .article-title { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; margin-bottom: 0.8rem; line-height: 1.3; }
+        .article-category { 
+            display: inline-block; 
+            background: rgba(212, 175, 55, 0.15); 
+            color: var(--accent); 
+            padding: 0.3rem 0.8rem; 
+            border-radius: 20px; 
+            font-size: 0.75rem; 
+            font-weight: 600; 
+            letter-spacing: 1px; 
+            text-transform: uppercase; 
+            margin-bottom: 0.8rem; 
+            width: fit-content;
+            transition: all 0.3s ease;
+        }
+        .article-title { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 1.4rem; 
+            font-weight: 700; 
+            margin-bottom: 0.8rem; 
+            line-height: 1.3;
+            transition: color 0.3s ease;
+        }
         .article-description { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1.5rem; line-height: 1.6; flex: 1; }
         .article-meta { display: flex; align-items: center; gap: 1rem; font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.2rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border); flex-wrap: wrap; }
         .article-meta-item { display: flex; align-items: center; gap: 0.4rem; }
@@ -75,10 +139,71 @@
         .btn-article-download:disabled { opacity: 0.7; cursor: wait; transform: none; }
         .btn-article-view { background: transparent; color: var(--text-primary); border: 1px solid var(--border); }
         .btn-article-view:hover { border-color: var(--accent); color: var(--accent); }
-        .newsletter { max-width: 800px; margin: 4rem auto; padding: 3rem 2rem; background: var(--bg-card); border-radius: 20px; border: 1px solid var(--border); text-align: center; position: relative; overflow: hidden; }
-        .newsletter::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: var(--gradient); }
-        .newsletter i { font-size: 2.5rem; color: var(--accent); margin-bottom: 1rem; }
-        .newsletter h3 { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 0.8rem; }
+        .newsletter { 
+            max-width: 800px; 
+            margin: 4rem auto; 
+            padding: 3rem 2rem; 
+            background: var(--bg-card); 
+            border-radius: 20px; 
+            border: 1px solid var(--border); 
+            text-align: center; 
+            position: relative; 
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+        .newsletter::before { 
+            content: ''; 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 4px; 
+            background: var(--gradient);
+            transition: height 0.4s ease;
+        }
+        .newsletter:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: var(--shadow);
+        }
+        .newsletter.active {
+            transform: scale(1.03) translateY(-5px);
+            border-color: var(--accent-light);
+            border-width: 2px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.08) 0%, rgba(244, 208, 111, 0.05) 100%);
+            box-shadow: 0 20px 60px rgba(212, 175, 55, 0.3), 0 0 0 1px rgba(212, 175, 55, 0.15);
+        }
+        .newsletter.active::before {
+            height: 6px;
+            background: linear-gradient(90deg, #d4af37, #f4d06f, #d4af37);
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite;
+        }
+        .newsletter.active i {
+            transform: scale(1.15);
+            filter: drop-shadow(0 5px 15px rgba(212, 175, 55, 0.5));
+        }
+        .newsletter.active h3 {
+            color: var(--accent-light);
+        }
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        .newsletter i { 
+            font-size: 2.5rem; 
+            color: var(--accent); 
+            margin-bottom: 1rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-block;
+        }
+        .newsletter h3 { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 1.8rem; 
+            margin-bottom: 0.8rem;
+            transition: color 0.3s ease;
+        }
         .newsletter p { color: var(--text-secondary); margin-bottom: 2rem; }
         .newsletter-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
         .btn-primary { background: var(--gradient); color: var(--bg-primary); padding: 0.9rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s; }
@@ -86,17 +211,169 @@
         .btn-outline { background: transparent; color: var(--text-primary); padding: 0.9rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s; border: 2px solid var(--border); }
         .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
         
-        .community-section { max-width: 800px; margin: 4rem auto; padding: 3rem 2rem; background: linear-gradient(135deg, rgba(91, 155, 213, 0.1) 0%, rgba(212, 175, 55, 0.1) 100%); border-radius: 20px; border: 2px solid var(--accent); text-align: center; position: relative; overflow: hidden; }
-        .community-section::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, #5B9BD5, #d4af37, #2ecc71); }
-        .community-section i { font-size: 2.5rem; color: var(--accent); margin-bottom: 1rem; }
-        .community-section h3 { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 0.8rem; }
+        .community-section { 
+            max-width: 800px; 
+            margin: 4rem auto; 
+            padding: 3rem 2rem; 
+            background: linear-gradient(135deg, rgba(91, 155, 213, 0.1) 0%, rgba(212, 175, 55, 0.1) 100%); 
+            border-radius: 20px; 
+            border: 2px solid var(--accent); 
+            text-align: center; 
+            position: relative; 
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+        .community-section::before { 
+            content: ''; 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 4px; 
+            background: linear-gradient(90deg, #5B9BD5, #d4af37, #2ecc71);
+            transition: height 0.4s ease;
+        }
+        .community-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(91, 155, 213, 0.2);
+        }
+        .community-section.active {
+            transform: scale(1.03) translateY(-5px);
+            border-color: var(--accent-light);
+            border-width: 3px;
+            background: linear-gradient(135deg, rgba(91, 155, 213, 0.15) 0%, rgba(212, 175, 55, 0.15) 100%);
+            box-shadow: 0 20px 60px rgba(91, 155, 213, 0.35), 0 0 40px rgba(212, 175, 55, 0.2);
+        }
+        .community-section.active::before {
+            height: 6px;
+            animation: shimmer 2s infinite;
+        }
+        .community-section.active i {
+            transform: scale(1.2);
+            filter: drop-shadow(0 5px 20px rgba(212, 175, 55, 0.6));
+        }
+        .community-section.active h3 {
+            color: var(--accent-light);
+        }
+        .community-section.active .community-stat-value {
+            color: var(--accent-light);
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+        }
+        .community-section i { 
+            font-size: 2.5rem; 
+            color: var(--accent); 
+            margin-bottom: 1rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-block;
+        }
+        .community-section h3 { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 1.8rem; 
+            margin-bottom: 0.8rem;
+            transition: color 0.3s ease;
+        }
         .community-section p { color: var(--text-secondary); margin-bottom: 2rem; }
         .community-stats { display: flex; justify-content: center; gap: 2rem; margin: 1.5rem 0; flex-wrap: wrap; }
         .community-stat { text-align: center; }
-        .community-stat-value { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: var(--accent); }
+        .community-stat-value { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 1.8rem; 
+            font-weight: 700; 
+            color: var(--accent);
+            transition: all 0.3s ease;
+        }
         .community-stat-label { font-size: 0.8rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; }
         .btn-community { background: linear-gradient(135deg, #5B9BD5 0%, #4A90E2 100%); color: white; padding: 0.9rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s; box-shadow: 0 5px 20px rgba(91, 155, 213, 0.3); }
         .btn-community:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(91, 155, 213, 0.5); }
+        
+        .hub-section { 
+            max-width: 800px; 
+            margin: 4rem auto; 
+            padding: 3rem 2rem; 
+            background: linear-gradient(135deg, rgba(155, 89, 182, 0.1) 0%, rgba(212, 175, 55, 0.1) 100%); 
+            border-radius: 20px; 
+            border: 2px solid var(--hub-color); 
+            text-align: center; 
+            position: relative; 
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+        .hub-section::before { 
+            content: ''; 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 4px; 
+            background: linear-gradient(90deg, #9b59b6, #d4af37, #5B9BD5);
+            transition: height 0.4s ease;
+        }
+        .hub-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(155, 89, 182, 0.2);
+        }
+        .hub-section.active {
+            transform: scale(1.03) translateY(-5px);
+            border-color: var(--hub-color-light);
+            border-width: 3px;
+            background: linear-gradient(135deg, rgba(155, 89, 182, 0.15) 0%, rgba(212, 175, 55, 0.15) 100%);
+            box-shadow: 0 20px 60px rgba(155, 89, 182, 0.35), 0 0 40px rgba(212, 175, 55, 0.2);
+        }
+        .hub-section.active::before {
+            height: 6px;
+            animation: shimmer 2s infinite;
+        }
+        .hub-section.active i {
+            transform: scale(1.2);
+            filter: drop-shadow(0 5px 20px rgba(155, 89, 182, 0.6));
+        }
+        .hub-section.active h3 {
+            color: var(--hub-color-light);
+        }
+        .hub-section.active .hub-stat-value {
+            color: var(--hub-color-light);
+            text-shadow: 0 0 20px rgba(155, 89, 182, 0.5);
+        }
+        .hub-section i { 
+            font-size: 2.5rem; 
+            color: var(--hub-color); 
+            margin-bottom: 1rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-block;
+        }
+        .hub-section h3 { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 1.8rem; 
+            margin-bottom: 0.8rem;
+            transition: color 0.3s ease;
+        }
+        .hub-section p { color: var(--text-secondary); margin-bottom: 2rem; }
+        .hub-stats { display: flex; justify-content: center; gap: 2rem; margin: 1.5rem 0; flex-wrap: wrap; }
+        .hub-stat { text-align: center; }
+        .hub-stat-value { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 1.8rem; 
+            font-weight: 700; 
+            color: var(--hub-color);
+            transition: all 0.3s ease;
+        }
+        .hub-stat-label { font-size: 0.8rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; }
+        .btn-hub { 
+            background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%); 
+            color: white; 
+            padding: 0.9rem 2rem; 
+            border-radius: 50px; 
+            text-decoration: none; 
+            font-weight: 600; 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 0.5rem; 
+            transition: all 0.3s; 
+            box-shadow: 0 5px 20px rgba(155, 89, 182, 0.3); 
+        }
+        .btn-hub:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(155, 89, 182, 0.5); }
         
         footer { background: var(--bg-secondary); padding: 2rem 5%; text-align: center; border-top: 1px solid var(--border); }
         footer p { color: var(--text-secondary); font-size: 0.9rem; }
@@ -108,7 +385,10 @@
             .stats-strip { gap: 1.5rem; padding: 1rem; } .stat-box .stat-number { font-size: 1.4rem; }
             .articles-grid { grid-template-columns: 1fr; } .page-header h1 { font-size: 2rem; }
             .search-filter-section { flex-direction: column; } .search-box { max-width: 100%; }
-            .community-stats { gap: 1rem; } .community-stat-value { font-size: 1.4rem; }
+            .community-stats, .hub-stats { gap: 1rem; } .community-stat-value, .hub-stat-value { font-size: 1.4rem; }
+            .article-card.active, .newsletter.active, .community-section.active, .hub-section.active {
+                transform: scale(1.02) translateY(-5px);
+            }
         }
     </style>
 </head>
@@ -125,6 +405,7 @@
                 <li><a href="https://sbmousavices.github.io/Industrial-Tools/">Products</a></li>
                 <li><a href="https://sbmousavices.github.io/Articles/" class="active">Articles</a></li>
                 <li><a href="https://sbmousavices.github.io/Industrial-Tools/Community.html">Community</a></li>
+                <li><a href="https://sbmousavices.github.io/Industrial-Tools/hub.html">Hub</a></li>
                 <li><a href="https://sbmousavices.github.io/Industrial-Tools/EnglishInfo.html#contact">Contact</a></li>
             </ul>
         </div>
@@ -159,7 +440,7 @@
     <section class="articles-container">
         <div class="articles-grid" id="articlesGrid">
             
-            <article class="article-card" data-category="Project Controls" data-keywords="resource loading resource allocation manpower loading resource management resource histograms resource leveling productivity norms earned value s-curve project controls primavera p6 epc planning">
+            <article class="article-card" data-category="Project Controls" data-keywords="resource loading resource allocation manpower loading resource management resource histograms resource leveling productivity norms earned value s-curve project controls primavera p6 epc planning" data-interactive>
                 <div class="article-banner" style="background: linear-gradient(135deg, #1abc9c 0%, #16a085 100%);">
                     <span class="article-badge">NEW</span>
                     <i class="fas fa-users-cog"></i>
@@ -174,17 +455,17 @@
                         <span class="article-meta-item"><i class="fas fa-file-pdf"></i> PDF</span>
                     </div>
                     <div class="article-actions">
-                        <button class="btn-article btn-article-download" onclick="downloadArticle('https://sbmousavices.github.io/Articles/Resource_Loading.pdf', 'Resource_Loading.pdf', this)">
+                        <button class="btn-article btn-article-download" onclick="event.stopPropagation(); downloadArticle('https://sbmousavices.github.io/Articles/Resource_Loading.pdf', 'Resource_Loading.pdf', this)">
                             <i class="fas fa-download"></i> Download
                         </button>
-                        <a href="https://sbmousavices.github.io/Articles/Resource_Loading.pdf" target="_blank" rel="noopener" class="btn-article btn-article-view">
+                        <a href="https://sbmousavices.github.io/Articles/Resource_Loading.pdf" target="_blank" rel="noopener" class="btn-article btn-article-view" onclick="event.stopPropagation()">
                             <i class="fas fa-eye"></i> Read Online
                         </a>
                     </div>
                 </div>
             </article>
             
-            <article class="article-card" data-category="Project Controls" data-keywords="baseline schedule development project baseline schedule management dcma aace pmi primavera p6 critical path epc planning schedule baseline approval governance">
+            <article class="article-card" data-category="Project Controls" data-keywords="baseline schedule development project baseline schedule management dcma aace pmi primavera p6 critical path epc planning schedule baseline approval governance" data-interactive>
                 <div class="article-banner" style="background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);">
                     <i class="fas fa-clipboard-check"></i>
                 </div>
@@ -198,17 +479,17 @@
                         <span class="article-meta-item"><i class="fas fa-file-pdf"></i> PDF</span>
                     </div>
                     <div class="article-actions">
-                        <button class="btn-article btn-article-download" onclick="downloadArticle('https://sbmousavices.github.io/Articles/Baseline_Schedule_Development.pdf', 'Baseline_Schedule_Development.pdf', this)">
+                        <button class="btn-article btn-article-download" onclick="event.stopPropagation(); downloadArticle('https://sbmousavices.github.io/Articles/Baseline_Schedule_Development.pdf', 'Baseline_Schedule_Development.pdf', this)">
                             <i class="fas fa-download"></i> Download
                         </button>
-                        <a href="https://sbmousavices.github.io/Articles/Baseline_Schedule_Development.pdf" target="_blank" rel="noopener" class="btn-article btn-article-view">
+                        <a href="https://sbmousavices.github.io/Articles/Baseline_Schedule_Development.pdf" target="_blank" rel="noopener" class="btn-article btn-article-view" onclick="event.stopPropagation()">
                             <i class="fas fa-eye"></i> Read Online
                         </a>
                     </div>
                 </div>
             </article>
             
-            <article class="article-card" data-category="Scheduling" data-keywords="critical path analysis cpm scheduling float network diagram">
+            <article class="article-card" data-category="Scheduling" data-keywords="critical path analysis cpm scheduling float network diagram" data-interactive>
                 <div class="article-banner" style="background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);">
                     <i class="fas fa-project-diagram"></i>
                 </div>
@@ -222,17 +503,17 @@
                         <span class="article-meta-item"><i class="fas fa-file-pdf"></i> PDF</span>
                     </div>
                     <div class="article-actions">
-                        <button class="btn-article btn-article-download" onclick="downloadArticle('https://sbmousavices.github.io/Articles/Critical_Path_Analysis.pdf', 'Critical_Path_Analysis.pdf', this)">
+                        <button class="btn-article btn-article-download" onclick="event.stopPropagation(); downloadArticle('https://sbmousavices.github.io/Articles/Critical_Path_Analysis.pdf', 'Critical_Path_Analysis.pdf', this)">
                             <i class="fas fa-download"></i> Download
                         </button>
-                        <a href="https://sbmousavices.github.io/Articles/Critical_Path_Analysis.pdf" target="_blank" rel="noopener" class="btn-article btn-article-view">
+                        <a href="https://sbmousavices.github.io/Articles/Critical_Path_Analysis.pdf" target="_blank" rel="noopener" class="btn-article btn-article-view" onclick="event.stopPropagation()">
                             <i class="fas fa-eye"></i> Read Online
                         </a>
                     </div>
                 </div>
             </article>
             
-            <article class="article-card" data-category="EPC Planning" data-keywords="wbs development epc projects work breakdown structure engineering procurement construction">
+            <article class="article-card" data-category="EPC Planning" data-keywords="wbs development epc projects work breakdown structure engineering procurement construction" data-interactive>
                 <div class="article-banner" style="background: linear-gradient(135deg, #27ae60 0%, #16a085 100%);">
                     <i class="fas fa-sitemap"></i>
                 </div>
@@ -246,17 +527,17 @@
                         <span class="article-meta-item"><i class="fas fa-file-pdf"></i> PDF</span>
                     </div>
                     <div class="article-actions">
-                        <button class="btn-article btn-article-download" onclick="downloadArticle('https://sbmousavices.github.io/Articles/WBS_Development_for_EPC_Projects.pdf', 'WBS_Development_for_EPC_Projects.pdf', this)">
+                        <button class="btn-article btn-article-download" onclick="event.stopPropagation(); downloadArticle('https://sbmousavices.github.io/Articles/WBS_Development_for_EPC_Projects.pdf', 'WBS_Development_for_EPC_Projects.pdf', this)">
                             <i class="fas fa-download"></i> Download
                         </button>
-                        <a href="https://sbmousavices.github.io/Articles/WBS_Development_for_EPC_Projects.pdf" target="_blank" rel="noopener" class="btn-article btn-article-view">
+                        <a href="https://sbmousavices.github.io/Articles/WBS_Development_for_EPC_Projects.pdf" target="_blank" rel="noopener" class="btn-article btn-article-view" onclick="event.stopPropagation()">
                             <i class="fas fa-eye"></i> Read Online
                         </a>
                     </div>
                 </div>
             </article>
             
-            <article class="article-card" data-category="Project Controls" data-keywords="primavera p6 scheduling best practices wbs baseline dcma critical path">
+            <article class="article-card" data-category="Project Controls" data-keywords="primavera p6 scheduling best practices wbs baseline dcma critical path" data-interactive>
                 <div class="article-banner" style="background: linear-gradient(135deg, #3498db 0%, #2c3e50 100%);">
                     <i class="fas fa-calendar-check"></i>
                 </div>
@@ -270,17 +551,17 @@
                         <span class="article-meta-item"><i class="fas fa-file-pdf"></i> PDF</span>
                     </div>
                     <div class="article-actions">
-                        <button class="btn-article btn-article-download" onclick="downloadArticle('https://sbmousavices.github.io/Articles/Primavera_P6_Scheduling_Best_Practices.pdf', 'Primavera_P6_Scheduling_Best_Practices.pdf', this)">
+                        <button class="btn-article btn-article-download" onclick="event.stopPropagation(); downloadArticle('https://sbmousavices.github.io/Articles/Primavera_P6_Scheduling_Best_Practices.pdf', 'Primavera_P6_Scheduling_Best_Practices.pdf', this)">
                             <i class="fas fa-download"></i> Download
                         </button>
-                        <a href="https://sbmousavices.github.io/Articles/Primavera_P6_Scheduling_Best_Practices.pdf" target="_blank" rel="noopener" class="btn-article btn-article-view">
+                        <a href="https://sbmousavices.github.io/Articles/Primavera_P6_Scheduling_Best_Practices.pdf" target="_blank" rel="noopener" class="btn-article btn-article-view" onclick="event.stopPropagation()">
                             <i class="fas fa-eye"></i> Read Online
                         </a>
                     </div>
                 </div>
             </article>
             
-            <article class="article-card" data-category="Risk Management" data-keywords="epc project delay schedule risks critical construction mitigation">
+            <article class="article-card" data-category="Risk Management" data-keywords="epc project delay schedule risks critical construction mitigation" data-interactive>
                 <div class="article-banner" style="background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);">
                     <i class="fas fa-exclamation-triangle"></i>
                 </div>
@@ -294,10 +575,10 @@
                         <span class="article-meta-item"><i class="fas fa-file-pdf"></i> PDF</span>
                     </div>
                     <div class="article-actions">
-                        <button class="btn-article btn-article-download" onclick="downloadArticle('https://sbmousavices.github.io/Articles/EPC_Project_Delay_Due_to_10_Critical_Schedule_Risks.pdf', 'EPC_Project_Delay_Due_to_10_Critical_Schedule_Risks.pdf', this)">
+                        <button class="btn-article btn-article-download" onclick="event.stopPropagation(); downloadArticle('https://sbmousavices.github.io/Articles/EPC_Project_Delay_Due_to_10_Critical_Schedule_Risks.pdf', 'EPC_Project_Delay_Due_to_10_Critical_Schedule_Risks.pdf', this)">
                             <i class="fas fa-download"></i> Download
                         </button>
-                        <a href="https://sbmousavices.github.io/Articles/EPC_Project_Delay_Due_to_10_Critical_Schedule_Risks.pdf" target="_blank" rel="noopener" class="btn-article btn-article-view">
+                        <a href="https://sbmousavices.github.io/Articles/EPC_Project_Delay_Due_to_10_Critical_Schedule_Risks.pdf" target="_blank" rel="noopener" class="btn-article btn-article-view" onclick="event.stopPropagation()">
                             <i class="fas fa-eye"></i> Read Online
                         </a>
                     </div>
@@ -313,7 +594,7 @@
     </section>
     
     <section class="articles-container">
-        <div class="community-section">
+        <div class="community-section" data-interactive>
             <i class="fas fa-users"></i>
             <h3>Join Our Professional Community</h3>
             <p>Connect with 500+ industrial engineers and project planners. Get exclusive tools, real-world insights, and networking opportunities across multiple platforms.</p>
@@ -331,22 +612,47 @@
                     <div class="community-stat-label">Starter Kit</div>
                 </div>
             </div>
-            <a href="https://sbmousavices.github.io/Industrial-Tools/Community.html" class="btn-community">
+            <a href="https://sbmousavices.github.io/Industrial-Tools/Community.html" class="btn-community" onclick="event.stopPropagation()">
                 <i class="fas fa-user-plus"></i> Join Community Now
             </a>
         </div>
     </section>
     
     <section class="articles-container">
-        <div class="newsletter">
+        <div class="hub-section" data-interactive>
+            <i class="fas fa-comments"></i>
+            <h3>Community Hub - Connect & Share</h3>
+            <p>Join our interactive hub to post job opportunities, share industry insights, ask questions, and connect with professionals worldwide. Real-time discussions, job board, and marketplace.</p>
+            <div class="hub-stats">
+                <div class="hub-stat">
+                    <div class="hub-stat-value">LIVE</div>
+                    <div class="hub-stat-label">Discussions</div>
+                </div>
+                <div class="hub-stat">
+                    <div class="hub-stat-value">JOBS</div>
+                    <div class="hub-stat-label">Board</div>
+                </div>
+                <div class="hub-stat">
+                    <div class="hub-stat-value">ADS</div>
+                    <div class="hub-stat-label">Marketplace</div>
+                </div>
+            </div>
+            <a href="https://sbmousavices.github.io/Industrial-Tools/hub.html" class="btn-hub" onclick="event.stopPropagation()">
+                <i class="fas fa-arrow-right"></i> Enter Community Hub
+            </a>
+        </div>
+    </section>
+    
+    <section class="articles-container">
+        <div class="newsletter" data-interactive>
             <i class="fas fa-bell"></i>
             <h3>Stay Updated</h3>
             <p>New articles are published regularly. Follow me on Instagram or reach out to get notified about the latest professional guides.</p>
             <div class="newsletter-btns">
-                <a href="https://www.instagram.com/industrial.planning.tools" target="_blank" class="btn-primary">
+                <a href="https://www.instagram.com/industrial.planning.tools" target="_blank" class="btn-primary" onclick="event.stopPropagation()">
                     <i class="fab fa-instagram"></i> Follow on Instagram
                 </a>
-                <a href="https://sbmousavices.github.io/Industrial-Tools/EnglishInfo.html#contact" class="btn-outline">
+                <a href="https://sbmousavices.github.io/Industrial-Tools/EnglishInfo.html#contact" class="btn-outline" onclick="event.stopPropagation()">
                     <i class="fas fa-envelope"></i> Get in Touch
                 </a>
             </div>
@@ -423,6 +729,32 @@
                     alert('Download failed. Please use Read Online instead.');
                 });
         }
+
+        document.querySelectorAll('[data-interactive]').forEach(element => {
+            element.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A' || e.target.closest('a') || e.target.tagName === 'BUTTON' || e.target.tagName === 'INPUT') return;
+                
+                const wasActive = this.classList.contains('active');
+                
+                document.querySelectorAll('[data-interactive].active').forEach(el => {
+                    if (el !== this) el.classList.remove('active');
+                });
+                
+                this.classList.toggle('active');
+                
+                if (!wasActive) {
+                    this.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            });
+        });
+
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('[data-interactive]')) {
+                document.querySelectorAll('[data-interactive].active').forEach(el => {
+                    el.classList.remove('active');
+                });
+            }
+        });
     </script>
 </body>
 </html>
