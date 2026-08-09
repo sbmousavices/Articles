@@ -746,7 +746,8 @@
         // ✅ UNIFIED AUTHENTICATION SYSTEM
         // =============================================
         const AUTH_STORAGE_KEY = 'bm_portfolio_user_session';
-        const HUB_API_URL = 'https://script.google.com/macros/s/AKfycbyRtM6t2abe0VRL7AlbwkOj5qAO09uaDtYQDVG0cYfcYPK4kA162FXxsUhqvgea0_gjCA/exec';
+        // ✅ UPDATED API URL - New Google Apps Script
+        const HUB_API_URL = 'https://script.google.com/macros/s/AKfycbwfc67DKjDJAIR4nB5CgpM6eha0puQok1i_LykV8kFeerMFsBtp0EOCWxYH_9PTkVLJ/exec';
         
         function getCurrentUser() {
             try {
@@ -838,7 +839,6 @@
                 
                 saveSession({ email, name: email.split('@')[0], loggedInAt: Date.now() });
                 
-                // ✅ Track Sign In
                 trackEvent('/sign-in', 'User signed in');
                 
                 msgDiv.className = 'auth-message success';
@@ -882,7 +882,6 @@
                     formData: { name, email }, emailVerified: true
                 }));
                 
-                // ✅ Track Sign Up
                 trackEvent('/sign-up', 'New user registered');
                 
                 msgDiv.className = 'auth-message success';
@@ -904,8 +903,6 @@
         document.getElementById('btnLogout').addEventListener('click', function() {
             clearSession();
             userMenu.classList.remove('show');
-            
-            // ✅ Track Sign Out
             trackEvent('/sign-out', 'User signed out');
         });
         
@@ -970,7 +967,6 @@
                     
                     btn.innerHTML = '<i class="fas fa-check"></i> Downloaded!';
                     
-                    // ✅ Track Article Download
                     trackEvent('/article-download-' + fileName.replace('.pdf', '').toLowerCase(), 'Downloaded: ' + fileName);
                     
                     setTimeout(() => { btn.innerHTML = originalHTML; btn.disabled = false; }, 2000);
