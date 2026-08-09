@@ -124,6 +124,17 @@
             });
         }
     </script>
+
+    <!-- ✅ GoatCounter Analytics -->
+    <script data-goatcounter="https://bmousavi.goatcounter.com/count"
+            async src="//gc.zgo.at/count.js"></script>
+    <script>
+        function trackEvent(path, title) {
+            if (window.goatcounter) {
+                window.goatcounter.count({ path: path, title: title || path, event: true });
+            }
+        }
+    </script>
     
     <style>
         :root {
@@ -723,6 +734,15 @@
     
     <script>
         // =============================================
+        // ✅ GOATCOUNTER CUSTOM EVENT TRACKING
+        // =============================================
+        function trackEvent(path, title) {
+            if (window.goatcounter) {
+                window.goatcounter.count({ path: path, title: title || path, event: true });
+            }
+        }
+        
+        // =============================================
         // ✅ UNIFIED AUTHENTICATION SYSTEM
         // =============================================
         const AUTH_STORAGE_KEY = 'bm_portfolio_user_session';
@@ -817,6 +837,10 @@
                 });
                 
                 saveSession({ email, name: email.split('@')[0], loggedInAt: Date.now() });
+                
+                // ✅ Track Sign In
+                trackEvent('/sign-in', 'User signed in');
+                
                 msgDiv.className = 'auth-message success';
                 msgDiv.textContent = '✓ Welcome back!';
                 setTimeout(closeModal, 1000);
@@ -858,6 +882,9 @@
                     formData: { name, email }, emailVerified: true
                 }));
                 
+                // ✅ Track Sign Up
+                trackEvent('/sign-up', 'New user registered');
+                
                 msgDiv.className = 'auth-message success';
                 msgDiv.textContent = '✓ Account created! Redirecting...';
                 setTimeout(() => {
@@ -874,7 +901,13 @@
         });
         
         // Sign Out
-        document.getElementById('btnLogout').addEventListener('click', clearSession);
+        document.getElementById('btnLogout').addEventListener('click', function() {
+            clearSession();
+            userMenu.classList.remove('show');
+            
+            // ✅ Track Sign Out
+            trackEvent('/sign-out', 'User signed out');
+        });
         
         // Init Auth
         updateAuthUI();
@@ -936,6 +969,10 @@
                     setTimeout(() => window.URL.revokeObjectURL(blobUrl), 3000);
                     
                     btn.innerHTML = '<i class="fas fa-check"></i> Downloaded!';
+                    
+                    // ✅ Track Article Download
+                    trackEvent('/article-download-' + fileName.replace('.pdf', '').toLowerCase(), 'Downloaded: ' + fileName);
+                    
                     setTimeout(() => { btn.innerHTML = originalHTML; btn.disabled = false; }, 2000);
                 })
                 .catch(error => {
