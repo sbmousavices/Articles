@@ -20,18 +20,54 @@
     <meta name="theme-color" content="#d4af37">
     <meta name="msapplication-TileColor" content="#d4af37">
     
-    <!-- ✅ ARTICLE SCHEMA MARKUP FOR SEO -->
+    <!-- ✅ ARTICLE SCHEMA MARKUP FOR SEO (UPDATED TO 9 ITEMS) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "ItemList",
       "name": "Professional Articles on Project Controls",
       "description": "Expert guides on Primavera P6, Critical Path Analysis, EVM, WBS Development, and Project Risk Management.",
-            "numberOfItems": 6,
+      "numberOfItems": 9,
       "itemListElement": [
         {
           "@type": "ListItem",
           "position": 1,
+          "item": {
+            "@type": "Article",
+            "headline": "Mastering Resource Leveling in Primavera P6",
+            "description": "Stop letting software dictate your schedule. Learn advanced Resource Leveling strategies to resolve over-allocations without destroying your Critical Path.",
+            "datePublished": "2026-08-12",
+            "author": { "@type": "Person", "name": "Behzad Mousavi" },
+            "url": "https://sbmousavices.github.io/Articles/Mastering_Resource_Leveling.pdf"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "item": {
+            "@type": "Article",
+            "headline": "The Ultimate Guide to Project Progress Measurement",
+            "description": "Master the art of Project Progress Measurement in EPC projects. Learn Weighted Milestones, Units Completed, and how to avoid the '90% Complete' syndrome.",
+            "datePublished": "2026-08-12",
+            "author": { "@type": "Person", "name": "Behzad Mousavi" },
+            "url": "https://sbmousavices.github.io/Articles/Project_Progress_Measurement.pdf"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "item": {
+            "@type": "Article",
+            "headline": "The Art of Schedule Updating",
+            "description": "Beyond Data Entry in Primavera P6. Learn about Data Dates, Retained Logic vs. Progress Override, and maintaining a defensible Critical Path.",
+            "datePublished": "2026-08-12",
+            "author": { "@type": "Person", "name": "Behzad Mousavi" },
+            "url": "https://sbmousavices.github.io/Articles/Updating_Schedules.pdf"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
           "item": {
             "@type": "Article",
             "headline": "Resource Loading",
@@ -43,7 +79,7 @@
         },
         {
           "@type": "ListItem",
-          "position": 2,
+          "position": 5,
           "item": {
             "@type": "Article",
             "headline": "Baseline Schedule Development",
@@ -55,7 +91,7 @@
         },
         {
           "@type": "ListItem",
-          "position": 3,
+          "position": 6,
           "item": {
             "@type": "Article",
             "headline": "Critical Path Analysis",
@@ -67,7 +103,7 @@
         },
         {
           "@type": "ListItem",
-          "position": 4,
+          "position": 7,
           "item": {
             "@type": "Article",
             "headline": "WBS Development for EPC Projects",
@@ -79,7 +115,7 @@
         },
         {
           "@type": "ListItem",
-          "position": 5,
+          "position": 8,
           "item": {
             "@type": "Article",
             "headline": "Primavera P6 Scheduling Best Practices",
@@ -91,7 +127,7 @@
         },
         {
           "@type": "ListItem",
-          "position": 6,
+          "position": 9,
           "item": {
             "@type": "Article",
             "headline": "EPC Project Delay Due to 10 Critical Schedule Risks",
@@ -503,7 +539,8 @@
         <h1>Professional <span>Articles</span></h1>
         <p class="tagline">Expert guides, best practices, and insights on Project Controls, Primavera P6, Critical Path Method, and Industrial Engineering.</p>
         <div class="stats-strip">
-            <div class="stat-box"><i class="fas fa-newspaper"></i><div class="stat-number">6</div><div class="stat-label">Articles</div></div>
+            <!-- ✅ UPDATED COUNT TO 9 -->
+            <div class="stat-box"><i class="fas fa-newspaper"></i><div class="stat-number">9</div><div class="stat-label">Articles</div></div>
             <div class="stat-box"><i class="fas fa-folder-open"></i><div class="stat-number">4</div><div class="stat-label">Categories</div></div>
             <div class="stat-box"><i class="fas fa-eye"></i><div class="stat-number">1.5K+</div><div class="stat-label">Readers</div></div>
             <div class="stat-box"><i class="fas fa-language"></i><div class="stat-number">EN</div><div class="stat-label">Language</div></div>
@@ -527,9 +564,88 @@
     <section class="articles-container">
         <div class="articles-grid" id="articlesGrid">
             
+            <!-- ✅ NEW ARTICLE 1: RESOURCE LEVELING -->
+            <article class="article-card" data-category="Scheduling" data-keywords="resource leveling primavera p6 over-allocation critical path smoothing epc planning project controls histogram" data-interactive>
+                <div class="article-banner" style="background: linear-gradient(135deg, #d35400 0%, #e67e22 100%);">
+                    <span class="article-badge">NEW</span>
+                    <i class="fas fa-balance-scale"></i>
+                </div>
+                <div class="article-body">
+                    <span class="article-category">Scheduling</span>
+                    <h2 class="article-title">Mastering Resource Leveling in Primavera P6</h2>
+                    <p class="article-description">Stop letting software dictate your schedule. Learn advanced Resource Leveling strategies to resolve over-allocations without destroying your Critical Path. A guide for Senior Planners.</p>
+                    <div class="article-meta">
+                        <span class="article-meta-item"><i class="fas fa-calendar-alt"></i> Aug 12, 2026</span>
+                        <span class="article-meta-item"><i class="fas fa-clock"></i> 25 min read</span>
+                        <span class="article-meta-item"><i class="fas fa-file-pdf"></i> PDF</span>
+                    </div>
+                    <div class="article-actions">
+                        <button class="btn-article btn-article-download" onclick="event.stopPropagation(); downloadArticle('https://sbmousavices.github.io/Articles/Mastering_Resource_Leveling.pdf', 'Mastering_Resource_Leveling.pdf', this)">
+                            <i class="fas fa-download"></i> Download
+                        </button>
+                        <a href="https://sbmousavices.github.io/Articles/Mastering_Resource_Leveling.pdf" target="_blank" rel="noopener" class="btn-article btn-article-view" onclick="event.stopPropagation()">
+                            <i class="fas fa-eye"></i> Read Online
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ✅ NEW ARTICLE 2: PROGRESS MEASUREMENT -->
+            <article class="article-card" data-category="Project Controls" data-keywords="progress measurement weighted milestones units completed earned value management evm s-curve 90 percent syndrome physical percent complete" data-interactive>
+                <div class="article-banner" style="background: linear-gradient(135deg, #2980b9 0%, #3498db 100%);">
+                    <span class="article-badge">NEW</span>
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div class="article-body">
+                    <span class="article-category">Project Controls</span>
+                    <h2 class="article-title">The Ultimate Guide to Project Progress Measurement</h2>
+                    <p class="article-description">Master the art of Project Progress Measurement in EPC projects. Learn Weighted Milestones, Units Completed, Earned Value Management (EVM), and how to avoid the "90% Complete" syndrome.</p>
+                    <div class="article-meta">
+                        <span class="article-meta-item"><i class="fas fa-calendar-alt"></i> Aug 12, 2026</span>
+                        <span class="article-meta-item"><i class="fas fa-clock"></i> 35 min read</span>
+                        <span class="article-meta-item"><i class="fas fa-file-pdf"></i> PDF</span>
+                    </div>
+                    <div class="article-actions">
+                        <button class="btn-article btn-article-download" onclick="event.stopPropagation(); downloadArticle('https://sbmousavices.github.io/Articles/Project_Progress_Measurement.pdf', 'Project_Progress_Measurement.pdf', this)">
+                            <i class="fas fa-download"></i> Download
+                        </button>
+                        <a href="https://sbmousavices.github.io/Articles/Project_Progress_Measurement.pdf" target="_blank" rel="noopener" class="btn-article btn-article-view" onclick="event.stopPropagation()">
+                            <i class="fas fa-eye"></i> Read Online
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ✅ NEW ARTICLE 3: UPDATING SCHEDULES -->
+            <article class="article-card" data-category="Scheduling" data-keywords="updating schedules primavera p6 data date retained logic progress override out-of-sequence critical path monthly reporting" data-interactive>
+                <div class="article-banner" style="background: linear-gradient(135deg, #8e44ad 0%, #9b59b6 100%);">
+                    <span class="article-badge">NEW</span>
+                    <i class="fas fa-sync-alt"></i>
+                </div>
+                <div class="article-body">
+                    <span class="article-category">Scheduling</span>
+                    <h2 class="article-title">The Art of Schedule Updating</h2>
+                    <p class="article-description">Beyond Data Entry in Primavera P6. Learn about Data Dates, Retained Logic vs. Progress Override, Out-of-Sequence progress, and how to maintain a defensible Critical Path for EPC projects.</p>
+                    <div class="article-meta">
+                        <span class="article-meta-item"><i class="fas fa-calendar-alt"></i> Aug 12, 2026</span>
+                        <span class="article-meta-item"><i class="fas fa-clock"></i> 30 min read</span>
+                        <span class="article-meta-item"><i class="fas fa-file-pdf"></i> PDF</span>
+                    </div>
+                    <div class="article-actions">
+                        <button class="btn-article btn-article-download" onclick="event.stopPropagation(); downloadArticle('https://sbmousavices.github.io/Articles/Updating_Schedules.pdf', 'Updating_Schedules.pdf', this)">
+                            <i class="fas fa-download"></i> Download
+                        </button>
+                        <a href="https://sbmousavices.github.io/Articles/Updating_Schedules.pdf" target="_blank" rel="noopener" class="btn-article btn-article-view" onclick="event.stopPropagation()">
+                            <i class="fas fa-eye"></i> Read Online
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- EXISTING ARTICLES BELOW -->
+            
             <article class="article-card" data-category="Project Controls" data-keywords="resource loading resource allocation manpower loading resource management resource histograms resource leveling productivity norms earned value s-curve project controls primavera p6 epc planning" data-interactive>
                 <div class="article-banner" style="background: linear-gradient(135deg, #1abc9c 0%, #16a085 100%);">
-                    <span class="article-badge">NEW</span>
                     <i class="fas fa-users-cog"></i>
                 </div>
                 <div class="article-body">
@@ -831,9 +947,10 @@
             btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Signing in...';
             
             try {
+                // 🛠️ FIX: Removed mode: 'no-cors' and fixed Content-Type for GAS compatibility
                 await fetch(HUB_API_URL, {
-                    method: 'POST', mode: 'no-cors',
-                    headers: { 'Content-Type': 'application/json' },
+                    method: 'POST',
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
                     body: JSON.stringify({ action: 'sign_in', email, password: document.getElementById('signinPassword').value })
                 });
                 
@@ -853,7 +970,7 @@
             }
         });
         
-        // Sign Up → Redirect to Community
+        // Sign Up → No Redirect (User Choice)
         document.getElementById('signupForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             const name = document.getElementById('signupName').value.trim();
@@ -871,9 +988,10 @@
             btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating account...';
             
             try {
+                // 🛠️ FIX: Removed mode: 'no-cors' and fixed Content-Type
                 await fetch(HUB_API_URL, {
-                    method: 'POST', mode: 'no-cors',
-                    headers: { 'Content-Type': 'application/json' },
+                    method: 'POST',
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
                     body: JSON.stringify({ action: 'sign_up', name, email, password: document.getElementById('signupPassword').value })
                 });
                 
@@ -885,11 +1003,13 @@
                 trackEvent('/sign-up', 'New user registered');
                 
                 msgDiv.className = 'auth-message success';
-                msgDiv.textContent = '✓ Account created! Redirecting...';
+                // 🛠️ FIX: Removed automatic redirect.
+                msgDiv.textContent = '✓ Account created successfully! You can now join the community.';
+                
                 setTimeout(() => {
                     closeModal();
-                    window.location.href = 'https://sbmousavices.github.io/Industrial-Tools/Community.html';
-                }, 1200);
+                    // window.location.href = 'https://sbmousavices.github.io/Industrial-Tools/Community.html'; // REMOVED
+                }, 1500);
             } catch (error) {
                 msgDiv.className = 'auth-message error';
                 msgDiv.textContent = 'Registration failed.';
