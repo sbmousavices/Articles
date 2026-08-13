@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Professional Articles | Project Controls & Planning | Behzad Mousavi</title>
-    <meta name="description" content="Expert guides on Primavera P6, Critical Path Analysis, EVM, and Project Controls.">
+    <meta name="description" content="Expert guides on Primavera P6, Critical Path Analysis, EVM, Delay Analysis, and Project Controls.">
     <meta name="author" content="Behzad Mousavi">
     
     <!-- ✅ PWA Manifest -->
@@ -20,18 +20,54 @@
     <meta name="theme-color" content="#d4af37">
     <meta name="msapplication-TileColor" content="#d4af37">
     
-    <!-- ✅ ARTICLE SCHEMA MARKUP FOR SEO (UPDATED TO 9 ITEMS) -->
+    <!-- ✅ ARTICLE SCHEMA MARKUP FOR SEO (UPDATED TO 12 ITEMS) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "ItemList",
       "name": "Professional Articles on Project Controls",
-      "description": "Expert guides on Primavera P6, Critical Path Analysis, EVM, WBS Development, and Project Risk Management.",
-      "numberOfItems": 9,
+      "description": "Expert guides on Primavera P6, Critical Path Analysis, EVM, WBS Development, Schedule Compression, Delay Analysis, and Float Management.",
+      "numberOfItems": 12,
       "itemListElement": [
         {
           "@type": "ListItem",
           "position": 1,
+          "item": {
+            "@type": "Article",
+            "headline": "Mastering Schedule Compression",
+            "description": "A strategic guide to accelerating project timelines without compromising scope. Learn Crashing vs Fast Tracking and SCL Protocol standards.",
+            "datePublished": "2026-08-13",
+            "author": { "@type": "Person", "name": "Behzad Mousavi" },
+            "url": "https://sbmousavices.github.io/Articles/Schedule_Compression.pdf"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "item": {
+            "@type": "Article",
+            "headline": "The Definitive Guide to Delay Analysis",
+            "description": "Master forensic schedule techniques like Time Impact Analysis (TIA), Windows Analysis, and As-Planned vs As-Built for EOT claims.",
+            "datePublished": "2026-08-13",
+            "author": { "@type": "Person", "name": "Behzad Mousavi" },
+            "url": "https://sbmousavices.github.io/Articles/Delay_Analysis.pdf"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "item": {
+            "@type": "Article",
+            "headline": "The Strategic Art of Float Management",
+            "description": "Understand Total vs Free Float, navigate float ownership under SCL/FIDIC protocols, and leverage schedule flexibility to mitigate delays.",
+            "datePublished": "2026-08-13",
+            "author": { "@type": "Person", "name": "Behzad Mousavi" },
+            "url": "https://sbmousavices.github.io/Articles/Float_Management.pdf"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
           "item": {
             "@type": "Article",
             "headline": "Mastering Resource Leveling in Primavera P6",
@@ -43,7 +79,7 @@
         },
         {
           "@type": "ListItem",
-          "position": 2,
+          "position": 5,
           "item": {
             "@type": "Article",
             "headline": "The Ultimate Guide to Project Progress Measurement",
@@ -55,7 +91,7 @@
         },
         {
           "@type": "ListItem",
-          "position": 3,
+          "position": 6,
           "item": {
             "@type": "Article",
             "headline": "The Art of Schedule Updating",
@@ -67,7 +103,7 @@
         },
         {
           "@type": "ListItem",
-          "position": 4,
+          "position": 7,
           "item": {
             "@type": "Article",
             "headline": "Resource Loading",
@@ -79,7 +115,7 @@
         },
         {
           "@type": "ListItem",
-          "position": 5,
+          "position": 8,
           "item": {
             "@type": "Article",
             "headline": "Baseline Schedule Development",
@@ -91,7 +127,7 @@
         },
         {
           "@type": "ListItem",
-          "position": 6,
+          "position": 9,
           "item": {
             "@type": "Article",
             "headline": "Critical Path Analysis",
@@ -103,7 +139,7 @@
         },
         {
           "@type": "ListItem",
-          "position": 7,
+          "position": 10,
           "item": {
             "@type": "Article",
             "headline": "WBS Development for EPC Projects",
@@ -115,7 +151,7 @@
         },
         {
           "@type": "ListItem",
-          "position": 8,
+          "position": 11,
           "item": {
             "@type": "Article",
             "headline": "Primavera P6 Scheduling Best Practices",
@@ -127,7 +163,7 @@
         },
         {
           "@type": "ListItem",
-          "position": 9,
+          "position": 12,
           "item": {
             "@type": "Article",
             "headline": "EPC Project Delay Due to 10 Critical Schedule Risks",
@@ -411,13 +447,35 @@
             max-width: 800px; margin: 4rem auto; padding: 3rem 2rem; 
             background: linear-gradient(135deg, rgba(91, 155, 213, 0.1) 0%, rgba(212, 175, 55, 0.1) 100%); 
             border-radius: 20px; border: 2px solid var(--accent); text-align: center; 
-            position: relative; overflow: hidden; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1بسیار عالی. تغییرات مربوط به **لوگوی دایره‌ای کنار کلمه Home** در کد صفحه مقالات (Articles) نیز اعمال شد.
+            position: relative; overflow: hidden; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer;
+        }
+        .community-section::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, #5B9BD5, #d4af37, #2ecc71); transition: height 0.4s ease; }
+        .community-section:hover { transform: translateY(-5px); box-shadow: 0 15px 50px rgba(91, 155, 213, 0.2); }
+        .community-section.active {
+            transform: scale(1.03) translateY(-5px); border-color: var(--accent-light); border-width: 3px;
+            background: linear-gradient(135deg, rgba(91, 155, 213, 0.15) 0%, rgba(212, 175, 55, 0.15) 100%);
+            box-shadow: 0 20px 60px rgba(91, 155, 213, 0.35), 0 0 40px rgba(212, 175, 55, 0.2);
+        }
+        .community-section.active::before { height: 6px; animation: shimmer 2s infinite; }
+        .community-section.active i { transform: scale(1.2); filter: drop-shadow(0 5px 20px rgba(212, 175, 55, 0.6)); }
+        .community-section.active h3 { color: var(--accent-light); }
+        .community-section.active .community-stat-value { color: var(--accent-light); text-shadow: 0 0 20px rgba(212, 175, 55, 0.5); }
+        .community-section i { font-size: 2.5rem; color: var(--accent); margin-bottom: 1rem; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); display: inline-block; }
+        .community-section h3 { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 0.8rem; transition: color 0.3s ease; }
+        .community-section p { color: var(--text-secondary); margin-bottom: 2rem; }
+        .community-stats { display: flex; justify-content: center; gap: 2rem; margin: 1.5rem 0; flex-wrap: wrap; }
+        .community-stat { text-align: center; }
+        .community-stat-value { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: var(--accent); transition: all 0.3s ease; }
+        .community-stat-label { font-size: 0.8rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; }
+        .btn-community { background: linear-gradient(135deg, #5B9BD5 0%, #4A90E2 100%); color: white; padding: 0.9rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s; box-shadow: 0 5px 20px rgba(91, 155,بسیار عالی. من سه مقاله جدید (**Schedule Compression**، **Delay Analysis** و **Float Management**) را به لیست مقالات اضافه کردم.
 
 **تغییرات انجام شده:**
-1.  **CSS:** استایل‌های `.logo` و `.logo-circle` دقیقاً مشابه صفحه اصلی اضافه شدند تا ظاهر لوگو یکسان باشد.
-2.  **HTML:** ساختار تگ `<a class="logo">` در نوار ناوبری (`nav`) به‌روزرسانی شد تا شامل تصویر لوگو در یک دایره طلایی باشد.
+1.  **Schema Markup:** تعداد آیتم‌ها از ۹ به ۲ افزایش یافت و لینک‌های جدید در بخش JSON-LD اضافه شدند.
+2.  **Stats Strip:** تعداد مقالات در هدر صفحه از ۹ به ۲ تغییر کرد.
+3.  **Article Cards:** سه کارت جدید با طراحی متناسب (رنگ‌بندی و آیکون) برای مقالات جدید در ابتدای لیست (به عنوان مقالات جدیدتر/مهم) اضافه شدند.
+4.  **Links:** لینک‌های دانلود و مطالعه آنلاین دقیقاً طبق آدرس‌هایی که فرستادید تنظیم شدند.
 
-در اینجا کد کامل و اصلاح شده صفحه **Articles** قرار دارد:
+در اینجا کد کامل و اصلاح‌شده صفحه **Articles** قرار دارد:
 
 ```html
 <!DOCTYPE html>
@@ -426,7 +484,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Professional Articles | Project Controls & Planning | Behzad Mousavi</title>
-    <meta name="description" content="Expert guides on Primavera P6, Critical Path Analysis, EVM, and Project Controls.">
+    <meta name="description" content="Expert guides on Primavera P6, Critical Path Analysis, EVM, Delay Analysis, and Project Controls.">
     <meta name="author" content="Behzad Mousavi">
     
     <!-- ✅ PWA Manifest -->
@@ -442,18 +500,54 @@
     <meta name="theme-color" content="#d4af37">
     <meta name="msapplication-TileColor" content="#d4af37">
     
-    <!-- ✅ ARTICLE SCHEMA MARKUP FOR SEO (UPDATED TO 9 ITEMS) -->
+    <!-- ✅ ARTICLE SCHEMA MARKUP FOR SEO (UPDATED TO 12 ITEMS) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "ItemList",
       "name": "Professional Articles on Project Controls",
-      "description": "Expert guides on Primavera P6, Critical Path Analysis, EVM, WBS Development, and Project Risk Management.",
-      "numberOfItems": 9,
+      "description": "Expert guides on Primavera P6, Critical Path Analysis, EVM, WBS Development, Schedule Compression, Delay Analysis, and Float Management.",
+      "numberOfItems": 12,
       "itemListElement": [
         {
           "@type": "ListItem",
           "position": 1,
+          "item": {
+            "@type": "Article",
+            "headline": "Mastering Schedule Compression",
+            "description": "A strategic guide to accelerating project timelines without compromising scope. Learn Crashing vs Fast Tracking and SCL Protocol standards.",
+            "datePublished": "2026-08-13",
+            "author": { "@type": "Person", "name": "Behzad Mousavi" },
+            "url": "https://sbmousavices.github.io/Articles/Schedule_Compression.pdf"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "item": {
+            "@type": "Article",
+            "headline": "The Definitive Guide to Delay Analysis",
+            "description": "Master forensic schedule techniques like Time Impact Analysis (TIA), Windows Analysis, and As-Planned vs As-Built for EOT claims.",
+            "datePublished": "2026-08-13",
+            "author": { "@type": "Person", "name": "Behzad Mousavi" },
+            "url": "https://sbmousavices.github.io/Articles/Delay_Analysis.pdf"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "item": {
+            "@type": "Article",
+            "headline": "The Strategic Art of Float Management",
+            "description": "Understand Total vs Free Float, navigate float ownership under SCL/FIDIC protocols, and leverage schedule flexibility to mitigate delays.",
+            "datePublished": "2026-08-13",
+            "author": { "@type": "Person", "name": "Behzad Mousavi" },
+            "url": "https://sbmousavices.github.io/Articles/Float_Management.pdf"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
           "item": {
             "@type": "Article",
             "headline": "Mastering Resource Leveling in Primavera P6",
@@ -465,7 +559,7 @@
         },
         {
           "@type": "ListItem",
-          "position": 2,
+          "position": 5,
           "item": {
             "@type": "Article",
             "headline": "The Ultimate Guide to Project Progress Measurement",
@@ -477,7 +571,7 @@
         },
         {
           "@type": "ListItem",
-          "position": 3,
+          "position": 6,
           "item": {
             "@type": "Article",
             "headline": "The Art of Schedule Updating",
@@ -489,7 +583,7 @@
         },
         {
           "@type": "ListItem",
-          "position": 4,
+          "position": 7,
           "item": {
             "@type": "Article",
             "headline": "Resource Loading",
@@ -501,7 +595,7 @@
         },
         {
           "@type": "ListItem",
-          "position": 5,
+          "position": 8,
           "item": {
             "@type": "Article",
             "headline": "Baseline Schedule Development",
@@ -513,7 +607,7 @@
         },
         {
           "@type": "ListItem",
-          "position": 6,
+          "position": 9,
           "item": {
             "@type": "Article",
             "headline": "Critical Path Analysis",
@@ -525,7 +619,7 @@
         },
         {
           "@type": "ListItem",
-          "position": 7,
+          "position": 10,
           "item": {
             "@type": "Article",
             "headline": "WBS Development for EPC Projects",
@@ -537,7 +631,7 @@
         },
         {
           "@type": "ListItem",
-          "position": 8,
+          "position": 11,
           "item": {
             "@type": "Article",
             "headline": "Primavera P6 Scheduling Best Practices",
@@ -549,7 +643,7 @@
         },
         {
           "@type": "ListItem",
-          "position": 9,
+          "position": 12,
           "item": {
             "@type": "Article",
             "headline": "EPC Project Delay Due to 10 Critical Schedule Risks",
@@ -999,8 +1093,8 @@
         <h1>Professional <span>Articles</span></h1>
         <p class="tagline">Expert guides, best practices, and insights on Project Controls, Primavera P6, Critical Path Method, and Industrial Engineering.</p>
         <div class="stats-strip">
-            <!-- ✅ UPDATED COUNT TO 9 -->
-            <div class="stat-box"><i class="fas fa-newspaper"></i><div class="stat-number">9</div><div class="stat-label">Articles</div></div>
+            <!-- ✅ UPDATED COUNT TO 12 -->
+            <div class="stat-box"><i class="fas fa-newspaper"></i><div class="stat-number">12</div><div class="stat-label">Articles</div></div>
             <div class="stat-box"><i class="fas fa-folder-open"></i><div class="stat-number">4</div><div class="stat-label">Categories</div></div>
             <div class="stat-box"><i class="fas fa-eye"></i><div class="stat-number">1.5K+</div><div class="stat-label">Readers</div></div>
             <div class="stat-box"><i class="fas fa-language"></i><div class="stat-number">EN</div><div class="stat-label">Language</div></div>
@@ -1024,10 +1118,87 @@
     <section class="articles-container">
         <div class="articles-grid" id="articlesGrid">
             
-            <!-- ✅ NEW ARTICLE 1: RESOURCE LEVELING -->
+            <!-- ✅ NEW ARTICLE: SCHEDULE COMPRESSION -->
+            <article class="article-card" data-category="Scheduling" data-keywords="schedule compression crashing fast tracking project acceleration construction management agile scheduling resource optimization scl protocol" data-interactive>
+                <div class="article-banner" style="background: linear-gradient(135deg, #c0392b 0%, #e74c3c 100%);">
+                    <span class="article-badge">NEW</span>
+                    <i class="fas fa-tachometer-alt"></i>
+                </div>
+                <div class="article-body">
+                    <span class="article-category">Scheduling</span>
+                    <h2 class="article-title">Mastering Schedule Compression</h2>
+                    <p class="article-description">A strategic guide to accelerating project timelines without compromising scope. Learn the critical differences between Crashing and Fast Tracking, analyze risks, and master the art of project acceleration.</p>
+                    <div class="article-meta">
+                        <span class="article-meta-item"><i class="fas fa-calendar-alt"></i> Aug 13, 2026</span>
+                        <span class="article-meta-item"><i class="fas fa-clock"></i> 20 min read</span>
+                        <span class="article-meta-item"><i class="fas fa-file-pdf"></i> PDF</span>
+                    </div>
+                    <div class="article-actions">
+                        <button class="btn-article btn-article-download" onclick="event.stopPropagation(); downloadArticle('https://sbmousavices.github.io/Articles/Schedule_Compression.pdf', 'Schedule_Compression.pdf', this)">
+                            <i class="fas fa-download"></i> Download
+                        </button>
+                        <a href="https://sbmousavices.github.io/Articles/Schedule_Compression.pdf" target="_blank" rel="noopener" class="btn-article btn-article-view" onclick="event.stopPropagation()">
+                            <i class="fas fa-eye"></i> Read Online
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ✅ NEW ARTICLE: DELAY ANALYSIS -->
+            <article class="article-card" data-category="Risk Management" data-keywords="delay analysis forensic schedule analysis time impact analysis tia windows analysis as-planned vs as-built concurrent delays scl protocol extension of time eot construction claims" data-interactive>
+                <div class="article-banner" style="background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);">
+                    <span class="article-badge">NEW</span>
+                    <i class="fas fa-gavel"></i>
+                </div>
+                <div class="article-body">
+                    <span class="article-category">Claims & Forensics</span>
+                    <h2 class="article-title">The Definitive Guide to Delay Analysis</h2>
+                    <p class="article-description">Master forensic schedule techniques like Time Impact Analysis (TIA), Windows Analysis, and As-Planned vs As-Built. Understand concurrent delays and the SCL Protocol to substantiate Extension of Time (EOT) claims.</p>
+                    <div class="article-meta">
+                        <span class="article-meta-item"><i class="fas fa-calendar-alt"></i> Aug 13, 2026</span>
+                        <span class="article-meta-item"><i class="fas fa-clock"></i> 25 min read</span>
+                        <span class="article-meta-item"><i class="fas fa-file-pdf"></i> PDF</span>
+                    </div>
+                    <div class="article-actions">
+                        <button class="btn-article btn-article-download" onclick="event.stopPropagation(); downloadArticle('https://sbmousavices.github.io/Articles/Delay_Analysis.pdf', 'Delay_Analysis.pdf', this)">
+                            <i class="fas fa-download"></i> Download
+                        </button>
+                        <a href="https://sbmousavices.github.io/Articles/Delay_Analysis.pdf" target="_blank" rel="noopener" class="btn-article btn-article-view" onclick="event.stopPropagation()">
+                            <i class="fas fa-eye"></i> Read Online
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ✅ NEW ARTICLE: FLOAT MANAGEMENT -->
+            <article class="article-card" data-category="Scheduling" data-keywords="float management total float free float critical path method schedule slack float ownership scl protocol negative float project delay analysis construction scheduling" data-interactive>
+                <div class="article-banner" style="background: linear-gradient(135deg, #16a085 0%, #1abc9c 100%);">
+                    <span class="article-badge">NEW</span>
+                    <i class="fas fa-water"></i>
+                </div>
+                <div class="article-body">
+                    <span class="article-category">Scheduling</span>
+                    <h2 class="article-title">The Strategic Art of Float Management</h2>
+                    <p class="article-description">Understand the critical differences between Total Float and Free Float, navigate the legal complexities of float ownership under SCL and FIDIC protocols, and learn how to leverage schedule flexibility to mitigate delays.</p>
+                    <div class="article-meta">
+                        <span class="article-meta-item"><i class="fas fa-calendar-alt"></i> Aug 13, 2026</span>
+                        <span class="article-meta-item"><i class="fas fa-clock"></i> 22 min read</span>
+                        <span class="article-meta-item"><i class="fas fa-file-pdf"></i> PDF</span>
+                    </div>
+                    <div class="article-actions">
+                        <button class="btn-article btn-article-download" onclick="event.stopPropagation(); downloadArticle('https://sbmousavices.github.io/Articles/Float_Management.pdf', 'Float_Management.pdf', this)">
+                            <i class="fas fa-download"></i> Download
+                        </button>
+                        <a href="https://sbmousavices.github.io/Articles/Float_Management.pdf" target="_blank" rel="noopener" class="btn-article btn-article-view" onclick="event.stopPropagation()">
+                            <i class="fas fa-eye"></i> Read Online
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- EXISTING ARTICLE: RESOURCE LEVELING -->
             <article class="article-card" data-category="Scheduling" data-keywords="resource leveling primavera p6 over-allocation critical path smoothing epc planning project controls histogram" data-interactive>
                 <div class="article-banner" style="background: linear-gradient(135deg, #d35400 0%, #e67e22 100%);">
-                    <span class="article-badge">NEW</span>
                     <i class="fas fa-balance-scale"></i>
                 </div>
                 <div class="article-body">
@@ -1050,10 +1221,9 @@
                 </div>
             </article>
 
-            <!-- ✅ NEW ARTICLE 2: PROGRESS MEASUREMENT -->
+            <!-- EXISTING ARTICLE: PROGRESS MEASUREMENT -->
             <article class="article-card" data-category="Project Controls" data-keywords="progress measurement weighted milestones units completed earned value management evm s-curve 90 percent syndrome physical percent complete" data-interactive>
                 <div class="article-banner" style="background: linear-gradient(135deg, #2980b9 0%, #3498db 100%);">
-                    <span class="article-badge">NEW</span>
                     <i class="fas fa-chart-line"></i>
                 </div>
                 <div class="article-body">
@@ -1076,10 +1246,9 @@
                 </div>
             </article>
 
-            <!-- ✅ NEW ARTICLE 3: UPDATING SCHEDULES -->
+            <!-- EXISTING ARTICLE: UPDATING SCHEDULES -->
             <article class="article-card" data-category="Scheduling" data-keywords="updating schedules primavera p6 data date retained logic progress override out-of-sequence critical path monthly reporting" data-interactive>
                 <div class="article-banner" style="background: linear-gradient(135deg, #8e44ad 0%, #9b59b6 100%);">
-                    <span class="article-badge">NEW</span>
                     <i class="fas fa-sync-alt"></i>
                 </div>
                 <div class="article-body">
