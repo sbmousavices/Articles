@@ -109,142 +109,125 @@ window.goatcounter.count({ path: path, title: title || path, event: true });
 --hub-color-light: #bb8fce;
 --success: #2ecc71;
 --danger: #e74c3c;
+
+/* ✅ NAV STANDARD VARIABLES */
+--nav-height: 70px;
+--nav-bg: rgba(10, 10, 12, 0.95);
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-body { font-family: 'Inter', sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.7; overflow-x: hidden; }
-/* --- UNIFIED AUTH MODAL STYLES --- */
-.auth-modal-overlay {
-position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-background: rgba(10, 22, 40, 0.85); backdrop-filter: blur(8px);
-z-index: 2000; display: none; align-items: center; justify-content: center;
-opacity: 0; transition: opacity 0.3s ease;
+body { 
+    font-family: 'Inter', sans-serif; 
+    background: var(--bg-primary); 
+    color: var(--text-primary); 
+    line-height: 1.7; 
+    overflow-x: hidden; 
+    padding-top: var(--nav-height); /* ✅ SPACE FOR FIXED HEADER */
 }
-.auth-modal-overlay.active { display: flex; opacity: 1; }
-.auth-modal {
-background: var(--bg-card); border: 1px solid var(--border);
-border-radius: 20px; padding: 2.5rem; width: 90%; max-width: 450px;
-position: relative; transform: translateY(20px); transition: transform 0.3s ease;
-box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+
+/* ✅ UNIFIED NAVIGATION BAR STYLES */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--nav-height);
+    background: var(--nav-bg);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5%;
 }
-.auth-modal-overlay.active .auth-modal { transform: translateY(0); }
-.auth-close {
-position: absolute; top: 1.2rem; right: 1.5rem;
-background: none; border: none; color: var(--text-secondary);
-font-size: 1.5rem; cursor: pointer; transition: color 0.3s;
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 1.2rem;
 }
-.auth-close:hover { color: var(--accent); }
-.auth-tabs { display: flex; gap: 0; margin-bottom: 2rem; border-bottom: 2px solid var(--border); }
-.auth-tab {
-flex: 1; padding: 0.8rem; background: none; border: none;
-color: var(--text-secondary); font-family: inherit; font-size: 1rem;
-font-weight: 600; cursor: pointer; transition: all 0.3s;
-border-bottom: 2px solid transparent; margin-bottom: -2px;
+
+.nav-logo img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid var(--accent);
 }
-.auth-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
-.auth-form { display: none; }
-.auth-form.active { display: block; animation: fadeInAuth 0.3s ease; }
-.auth-field { margin-bottom: 1.2rem; text-align: left; }
-.auth-field label { display: block; margin-bottom: 0.5rem; color: var(--text-secondary); font-size: 0.85rem; font-weight: 500; }
-.auth-field input {
-width: 100%; padding: 0.85rem 1.2rem; background: var(--bg-primary);
-border: 1px solid var(--border); border-radius: 10px; color: var(--text-primary);
-font-family: inherit; font-size: 1rem; transition: all 0.3s;
+
+.nav-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+    align-items: center;
 }
-.auth-field input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1); }
-.btn-auth-submit {
-width: 100%; padding: 1rem; background: var(--gradient); color: var(--bg-primary);
-border: none; border-radius: 50px; font-weight: 700; font-size: 1rem;
-cursor: pointer; transition: all 0.3s; margin-top: 0.5rem; font-family: inherit;
+
+.nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.3s;
 }
-.btn-auth-submit:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4); }
-.btn-auth-submit:disabled { opacity: 0.6; cursor: not-allowed; }
-.auth-message { padding: 0.8rem; border-radius: 8px; margin-bottom: 1rem; text-align: center; font-size: 0.9rem; display: none; }
-.auth-message.success { display: block; background: rgba(46, 204, 113, 0.2); border: 1px solid var(--success); color: var(--success); }
-.auth-message.error { display: block; background: rgba(231, 76, 60, 0.2); border: 1px solid var(--danger); color: var(--danger); }
-/* NAV AUTH BUTTON & DROPDOWN */
-.nav-auth-btn {
-padding: 0.5rem 1.3rem; border-radius: 50px; font-weight: 600;
-font-size: 0.85rem; cursor: pointer; transition: all 0.3s;
-display: inline-flex; align-items: center; gap: 0.5rem;
-border: 1px solid var(--accent); color: var(--accent); background: transparent;
-font-family: inherit; text-decoration: none; white-space: nowrap;
+
+.nav-links a:hover, .nav-links a.active {
+    color: var(--accent);
 }
-.nav-auth-btn:hover { background: var(--accent); color: var(--bg-primary); }
-.nav-auth-btn.logged-in { border-color: var(--success); color: var(--success); }
-.nav-auth-btn.logged-in:hover { background: rgba(46, 204, 113, 0.1); }
-.user-dropdown { position: relative; display: none; }
-.user-dropdown.active { display: inline-flex; }
-.user-menu {
-position: absolute; top: calc(100% + 10px); right: 0;
-background: var(--bg-card); border: 1px solid var(--border);
-border-radius: 12px; min-width: 200px; padding: 0.5rem;
-box-shadow: var(--shadow); display: none; z-index: 1001;
+
+/* ✅ SIGN IN BUTTON STYLE */
+.btn-signin {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0.6rem 1.5rem;
+    border: 1px solid var(--accent);
+    border-radius: 50px;
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    white-space: nowrap;
 }
-.user-menu.show { display: block; animation: fadeInAuth 0.2s ease; }
-.user-menu-item {
-display: flex; align-items: center; gap: 0.7rem; padding: 0.7rem 1rem;
-color: var(--text-secondary); font-size: 0.9rem; cursor: pointer;
-border-radius: 8px; transition: all 0.2s; border: none; background: none;
-width: 100%; font-family: inherit; text-decoration: none;
+
+.btn-signin:hover {
+    background: var(--accent);
+    color: var(--bg-primary);
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
 }
-.user-menu-item:hover { background: rgba(212, 175, 55, 0.1); color: var(--accent); }
-.user-menu-item.danger:hover { background: rgba(231, 76, 60, 0.1); color: var(--danger); }
-.user-menu-divider { height: 1px; background: var(--border); margin: 0.3rem 0; }
-@keyframes fadeInAuth { from { opacity: 0; } to { opacity: 1; } }
-/* --- END AUTH STYLES --- */
+
+/* Mobile Menu Toggle */
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
 .bg-shapes { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; overflow: hidden; }
 .bg-shapes::before, .bg-shapes::after { content: ''; position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.15; animation: float 20s infinite ease-in-out; }
 .bg-shapes::before { width: 500px; height: 500px; background: var(--accent); top: -100px; right: -100px; }
 .bg-shapes::after { width: 600px; height: 600px; background: #4a90e2; bottom: -200px; left: -200px; animation-delay: -10s; }
 @keyframes float { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(50px, 50px) scale(1.1); } }
-nav { position: fixed; top: 0; width: 100%; padding: 1rem 5%; background: rgba(10, 22, 40, 0.95); backdrop-filter: blur(15px); z-index: 1000; border-bottom: 1px solid var(--border); }
-.nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-/* ✅ UPDATED LOGO STYLES (MATCHING HOME PAGE) */
-.logo {
-font-family: 'Playfair Display', serif;
-font-size: 1.5rem;
-font-weight: 900;
-color: var(--accent);
-text-decoration: none;
-display: flex;
-align-items: center;
-gap: 10px;
-}
-.logo-circle {
-width: 32px;
-height: 32px;
-border-radius: 50%;
-border: 2px solid var(--accent);
-overflow: hidden;
-display: flex;
-align-items: center;
-justify-content: center;
-background: var(--bg-card);
-transition: transform 0.3s ease;
-}
-.logo-circle img {
-width: 100%;
-height: 100%;
-object-fit: cover;
-}
-.logo:hover .logo-circle {
-transform: scale(1.1);
-}
-.nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
-.nav-links a { color: var(--text-primary); text-decoration: none; font-weight: 500; transition: color 0.3s; font-size: 0.95rem; }
-.nav-links a:hover { color: var(--accent); }
-.nav-links .active { color: var(--accent); font-weight: 600; }
-.page-header { padding: 9rem 5% 3rem; text-align: center; }
+
+.page-header { padding: 6rem 5% 3rem; text-align: center; }
 .page-header .greeting { color: var(--accent); font-size: 1rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 1rem; }
 .page-header h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 900; line-height: 1.1; margin-bottom: 1rem; }
 .page-header h1 span { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 .page-header .tagline { font-size: 1.1rem; color: var(--text-secondary); max-width: 700px; margin: 0 auto 2rem; }
+
 .stats-strip { max-width: 900px; margin: 0 auto; display: flex; justify-content: center; gap: 3rem; padding: 1.5rem; background: var(--bg-card); border-radius: 15px; border: 1px solid var(--border); flex-wrap: wrap; }
 .stat-box { text-align: center; }
 .stat-box i { color: var(--accent); font-size: 1.5rem; margin-bottom: 0.3rem; display: block; }
 .stat-box .stat-number { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; }
 .stat-box .stat-label { color: var(--text-secondary); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; }
+
 .search-filter-section { max-width: 1200px; margin: 3rem auto; padding: 0 5%; display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; justify-content: center; }
 .search-box { flex: 1; min-width: 280px; max-width: 500px; position: relative; }
 .search-box input { width: 100%; padding: 0.9rem 1.5rem 0.9rem 3rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: 50px; color: var(--text-primary); font-family: inherit; font-size: 0.95rem; outline: none; transition: all 0.3s; }
@@ -254,6 +237,7 @@ transform: scale(1.1);
 .filter-pill { padding: 0.6rem 1.3rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: 50px; color: var(--text-secondary); font-size: 0.9rem; font-weight: 500; cursor: pointer; transition: all 0.3s; font-family: inherit; }
 .filter-pill:hover { border-color: var(--accent); color: var(--accent); }
 .filter-pill.active { background: var(--gradient); color: var(--bg-primary); border-color: transparent; font-weight: 600; }
+
 .articles-container { max-width: 1200px; margin: 0 auto; padding: 0 5% 4rem; }
 .articles-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 2rem; }
 .article-card {
@@ -292,6 +276,7 @@ letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.8rem; width: fi
 .btn-article-download:disabled { opacity: 0.7; cursor: wait; transform: none; }
 .btn-article-view { background: transparent; color: var(--text-primary); border: 1px solid var(--border); }
 .btn-article-view:hover { border-color: var(--accent); color: var(--accent); }
+
 .newsletter {
 max-width: 800px; margin: 4rem auto; padding: 3rem 2rem; background: var(--bg-card);
 border-radius: 20px; border: 1px solid var(--border); text-align: center;
@@ -316,6 +301,7 @@ box-shadow: 0 20px 60px rgba(212, 175, 55, 0.3), 0 0 0 1px rgba(212, 175, 55, 0.
 .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4); }
 .btn-outline { background: transparent; color: var(--text-primary); padding: 0.9rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s; border: 2px solid var(--border); }
 .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
 .community-section {
 max-width: 800px; margin: 4rem auto; padding: 3rem 2rem;
 background: linear-gradient(135deg, rgba(91, 155, 213, 0.1) 0%, rgba(212, 175, 55, 0.1) 100%);
@@ -342,6 +328,7 @@ box-shadow: 0 20px 60px rgba(91, 155, 213, 0.35), 0 0 40px rgba(212, 175, 55, 0.
 .community-stat-label { font-size: 0.8rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; }
 .btn-community { background: linear-gradient(135deg, #5B9BD5 0%, #4A90E2 100%); color: white; padding: 0.9rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s; box-shadow: 0 5px 20px rgba(91, 155, 213, 0.3); }
 .btn-community:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(91, 155, 213, 0.5); }
+
 .hub-section {
 max-width: 800px; margin: 4rem auto; padding: 3rem 2rem;
 background: linear-gradient(135deg, rgba(155, 89, 182, 0.1) 0%, rgba(212, 175, 55, 0.1) 100%);
@@ -368,19 +355,22 @@ box-shadow: 0 20px 60px rgba(155, 89, 182, 0.35), 0 0 40px rgba(212, 175, 55, 0.
 .hub-stat-label { font-size: 0.8rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; }
 .btn-hub { background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%); color: white; padding: 0.9rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s; box-shadow: 0 5px 20px rgba(155, 89, 182, 0.3); }
 .btn-hub:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(155, 89, 182, 0.5); }
+
 footer { background: var(--bg-secondary); padding: 2rem 5%; text-align: center; border-top: 1px solid var(--border); }
 footer p { color: var(--text-secondary); font-size: 0.9rem; }
+
 .no-results { text-align: center; padding: 4rem 2rem; color: var(--text-secondary); display: none; }
 .no-results i { font-size: 4rem; color: var(--accent); opacity: 0.5; margin-bottom: 1rem; }
 .no-results.show { display: block; }
-@media (max-width: 768px) {
-.nav-links { display: none; }
-.stats-strip { gap: 1.5rem; padding: 1rem; } .stat-box .stat-number { font-size: 1.4rem; }
-.articles-grid { grid-template-columns: 1fr; } .page-header h1 { font-size: 2rem; }
-.search-filter-section { flex-direction: column; } .search-box { max-width: 100%; }
-.community-stats, .hub-stats { gap: 1rem; } .community-stat-value, .hub-stat-value { font-size: 1.4rem; }
-.article-card.active, .newsletter.active, .community-section.active, .hub-section.active { transform: scale(1.02) translateY(-5px); }
-.auth-modal { padding: 1.8rem; width: 95%; }
+
+@media (max-width: 968px) {
+    .nav-links { display: none; }
+    .mobile-menu-btn { display: block; }
+    .stats-strip { gap: 1.5rem; padding: 1rem; } .stat-box .stat-number { font-size: 1.4rem; }
+    .articles-grid { grid-template-columns: 1fr; } .page-header h1 { font-size: 2rem; }
+    .search-filter-section { flex-direction: column; } .search-box { max-width: 100%; }
+    .community-stats, .hub-stats { gap: 1rem; } .community-stat-value, .hub-stat-value { font-size: 1.4rem; }
+    .article-card.active, .newsletter.active, .community-section.active, .hub-section.active { transform: scale(1.02) translateY(-5px); }
 }
 
 /* =============================================
@@ -552,95 +542,27 @@ footer p { color: var(--text-secondary); font-size: 0.9rem; }
 </head>
 <body>
 <div class="bg-shapes"></div>
-<!-- ✅ UNIFIED AUTH MODAL -->
-<div class="auth-modal-overlay" id="authModalOverlay">
-<div class="auth-modal">
-<button class="auth-close" id="authClose">&times;</button>
-<div class="auth-tabs">
-<button class="auth-tab active" data-tab="signin">Sign In</button>
-<button class="auth-tab" data-tab="signup">Sign Up</button>
-</div>
-<form class="auth-form active" id="signinForm">
-<div id="signinMessage" class="auth-message"></div>
-<div class="auth-field">
-<label for="signinEmail">Email Address</label>
-<input type="email" id="signinEmail" placeholder="name@company.com" required>
-</div>
-<div class="auth-field">
-<label for="signinPassword">Password</label>
-<input type="password" id="signinPassword" placeholder="Enter your password" required>
-</div>
-<button type="submit" class="btn-auth-submit" id="btnSignin">
-<i class="fas fa-sign-in-alt"></i> Sign In
-</button>
-</form>
-<form class="auth-form" id="signupForm">
-<div id="signupMessage" class="auth-message"></div>
-<div class="auth-field">
-<label for="signupName">Full Name</label>
-<input type="text" id="signupName" placeholder="e.g. Behzad Mousavi" required>
-</div>
-<div class="auth-field">
-<label for="signupEmail">Email Address</label>
-<input type="email" id="signupEmail" placeholder="name@company.com" required>
-</div>
-<div class="auth-field">
-<label for="signupPassword">Password</label>
-<input type="password" id="signupPassword" placeholder="Create a password" required minlength="6">
-</div>
-<button type="submit" class="btn-auth-submit" id="btnSignup">
-<i class="fas fa-user-plus"></i> Create Account
-</button>
-</form>
-</div>
-</div>
+
+<!-- ✅ UNIFIED NAVIGATION BAR -->
 <nav>
-<div class="nav-container">
-<!-- ✅ UPDATED LOGO STRUCTURE (MATCHING HOME PAGE) -->
-<a href="https://sbmousavices.github.io/Industrial-Tools/EnglishInfo.html" class="logo">
-<div class="logo-circle">
-<img src="https://sbmousavices.github.io/Industrial-Tools/icon-192.png" alt="BM Planning Logo">
-</div>
-Home
-</a>
-<ul class="nav-links">
-<!-- ✅ CHANGED ABOUT TO RESUME BUILDER WITH LINK -->
-<li><a href="https://sbmousavices.github.io/Resume/Resume_Builder_English.html">Resume Builder</a></li>
-<!-- ✅ CHANGED EXPERTISE TO WEB DESIGN WITH LINK TO THEME PAGE -->
-<li><a href="https://sbmousavices.github.io/Theme/index.html">Web Design</a></li>
-<!-- ✅ 2. CHANGED EDUCATION TO NFT GALLERY WITH CORRECT LINK -->
-<li><a href="https://sbmousavices.github.io/NFT/">NFT Gallery</a></li>
-<li><a href="https://sbmousavices.github.io/Industrial-Tools/">Products</a></li>
-<li><a href="https://sbmousavices.github.io/Articles/" class="active">Articles</a></li>
-<li><a href="https://sbmousavices.github.io/Industrial-Tools/Community.html">Community</a></li>
-<li><a href="https://sbmousavices.github.io/Industrial-Tools/hub.html">Hub</a></li>
-<li><a href="https://sbmousavices.github.io/Industrial-Tools/EnglishInfo.html#contact">Contact</a></li>
-<!-- ✅ AUTH BUTTON / USER DROPDOWN -->
-<li>
-<button class="nav-auth-btn" id="navAuthBtn">
-<i class="fas fa-user"></i> <span id="navAuthText">Sign In</span>
-</button>
-<div class="user-dropdown" id="userDropdown">
-<button class="nav-auth-btn logged-in" id="navUserBtn">
-<i class="fas fa-user-circle"></i> <span id="navUserName">User</span> <i class="fas fa-chevron-down" style="font-size:0.7rem; margin-left:3px;"></i>
-</button>
-<div class="user-menu" id="userMenu">
-<a href="https://sbmousavices.github.io/Industrial-Tools/Community.html" class="user-menu-item">
-<i class="fas fa-users"></i> My Community
-</a>
-<a href="https://sbmousavices.github.io/Industrial-Tools/hub.html" class="user-menu-item">
-<i class="fas fa-comments"></i> Go to Hub
-</a>
-<div class="user-menu-divider"></div>
-<button class="user-menu-item danger" id="btnLogout">
-<i class="fas fa-sign-out-alt"></i> Sign Out
-</button>
-</div>
-</div>
-</li>
-</ul>
-</div>
+    <a href="https://sbmousavices.github.io/Industrial-Tools/EnglishInfo.html" class="nav-logo">
+        <img src="https://sbmousavices.github.io/Industrial-Tools/icon-192.png" alt="BM Planning Logo">
+        <span>Home</span>
+    </a>
+    <ul class="nav-links">
+        <li><a href="https://sbmousavices.github.io/Resume/Resume_Builder_English.html">Resume Builder</a></li>
+        <li><a href="https://sbmousavices.github.io/Theme/index.html">Web Design</a></li>
+        <li><a href="https://sbmousavices.github.io/NFT/">NFT Gallery</a></li>
+        <li><a href="https://sbmousavices.github.io/Industrial-Tools/">Products</a></li>
+        <li><a href="https://sbmousavices.github.io/Articles/" class="active">Articles</a></li>
+        <li><a href="https://sbmousavices.github.io/Industrial-Tools/community.html">Community</a></li>
+        <li><a href="https://sbmousavices.github.io/Industrial-Tools/hub.html">Hub</a></li>
+        <li><a href="https://sbmousavices.github.io/Industrial-Tools/EnglishInfo.html#contact">Contact</a></li>
+        <li><a href="https://sbmousavices.github.io/Industrial-Tools/EnglishInfo.html" class="btn-signin"><i class="fas fa-user"></i> Sign In</a></li>
+    </ul>
+    <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
 </nav>
+
 <section class="page-header">
 <p class="greeting">Knowledge Library</p>
 <h1>Professional <span>Articles</span></h1>
@@ -1853,147 +1775,7 @@ if (window.goatcounter) {
 window.goatcounter.count({ path: path, title: title || path, event: true });
 }
 }
-// =============================================
-// ✅ UNIFIED AUTHENTICATION SYSTEM
-// =============================================
-const AUTH_STORAGE_KEY = 'bm_portfolio_user_session';
-// ✅ UPDATED API URL - New Google Apps Script
-const HUB_API_URL = 'https://script.google.com/macros/s/AKfycbwfc67DKjDJAIR4nB5CgpM6eha0puQok1i_LykV8kFeerMFsBtp0EOCWxYH_9PTkVLJ/exec';
-function getCurrentUser() {
-try {
-const saved = localStorage.getItem(AUTH_STORAGE_KEY);
-return saved ? JSON.parse(saved) : null;
-} catch { return null; }
-}
-function saveSession(user) {
-localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(user));
-updateAuthUI();
-}
-function clearSession() {
-localStorage.removeItem(AUTH_STORAGE_KEY);
-localStorage.removeItem('community_signup_progress');
-updateAuthUI();
-}
-function updateAuthUI() {
-const user = getCurrentUser();
-const authBtn = document.getElementById('navAuthBtn');
-const userDropdown = document.getElementById('userDropdown');
-const userNameSpan = document.getElementById('navUserName');
-if (user && user.email) {
-authBtn.style.display = 'none';
-userDropdown.classList.add('active');
-userNameSpan.textContent = user.name ? user.name.split(' ')[0] : 'User';
-} else {
-authBtn.style.display = 'inline-flex';
-userDropdown.classList.remove('active');
-document.getElementById('userMenu').classList.remove('show');
-}
-}
-// Modal Controls
-const modalOverlay = document.getElementById('authModalOverlay');
-const authTabs = document.querySelectorAll('.auth-tab');
-const authForms = document.querySelectorAll('.auth-form');
-function openModal(tab = 'signin') {
-modalOverlay.classList.add('active');
-switchTab(tab);
-document.body.style.overflow = 'hidden';
-}
-function closeModal() {
-modalOverlay.classList.remove('active');
-document.body.style.overflow = '';
-document.querySelectorAll('.auth-message').forEach(m => { m.className = 'auth-message'; m.textContent = ''; });
-}
-function switchTab(tabName) {
-authTabs.forEach(t => t.classList.toggle('active', t.dataset.tab === tabName));
-authForms.forEach(f => f.classList.remove('active'));
-document.getElementById(tabName === 'signin' ? 'signinForm' : 'signupForm').classList.add('active');
-document.querySelectorAll('.auth-message').forEach(m => { m.className = 'auth-message'; m.textContent = ''; });
-}
-document.getElementById('navAuthBtn').addEventListener('click', () => openModal('signin'));
-document.getElementById('authClose').addEventListener('click', closeModal);
-modalOverlay.addEventListener('click', (e) => { if (e.target === modalOverlay) closeModal(); });
-authTabs.forEach(tab => tab.addEventListener('click', () => switchTab(tab.dataset.tab)));
-// User Dropdown
-document.getElementById('navUserBtn').addEventListener('click', (e) => {
-e.stopPropagation();
-document.getElementById('userMenu').classList.toggle('show');
-});
-document.addEventListener('click', (e) => {
-if (!e.target.closest('.user-dropdown')) document.getElementById('userMenu').classList.remove('show');
-});
-// Sign In
-document.getElementById('signinForm').addEventListener('submit', async function(e) {
-e.preventDefault();
-const email = document.getElementById('signinEmail').value.trim();
-const msgDiv = document.getElementById('signinMessage');
-const btn = document.getElementById('btnSignin');
-btn.disabled = true;
-btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Signing in...';
-try {
-await fetch(HUB_API_URL, {
-method: 'POST',
-headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-body: JSON.stringify({ action: 'sign_in', email, password: document.getElementById('signinPassword').value })
-});
-saveSession({ email, name: email.split('@')[0], loggedInAt: Date.now() });
-trackEvent('/sign-in', 'User signed in');
-msgDiv.className = 'auth-message success';
-msgDiv.textContent = '✓ Welcome back!';
-setTimeout(closeModal, 1000);
-} catch (error) {
-msgDiv.className = 'auth-message error';
-msgDiv.textContent = 'Sign in failed.';
-} finally {
-btn.disabled = false;
-btn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Sign In';
-}
-});
-// Sign Up → No Redirect (User Choice)
-document.getElementById('signupForm').addEventListener('submit', async function(e) {
-e.preventDefault();
-const name = document.getElementById('signupName').value.trim();
-const email = document.getElementById('signupEmail').value.trim();
-const msgDiv = document.getElementById('signupMessage');
-const btn = document.getElementById('btnSignup');
-if (document.getElementById('signupPassword').value.length < 6) {
-msgDiv.className = 'auth-message error';
-msgDiv.textContent = 'Password must be at least 6 characters.';
-return;
-}
-btn.disabled = true;
-btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating account...';
-try {
-await fetch(HUB_API_URL, {
-method: 'POST',
-headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-body: JSON.stringify({ action: 'sign_up', name, email, password: document.getElementById('signupPassword').value })
-});
-saveSession({ email, name, loggedInAt: Date.now() });
-localStorage.setItem('community_signup_progress', JSON.stringify({
-formData: { name, email }, emailVerified: true
-}));
-trackEvent('/sign-up', 'New user registered');
-msgDiv.className = 'auth-message success';
-msgDiv.textContent = '✓ Account created successfully! You can now join the community.';
-setTimeout(() => {
-closeModal();
-}, 1500);
-} catch (error) {
-msgDiv.className = 'auth-message error';
-msgDiv.textContent = 'Registration failed.';
-} finally {
-btn.disabled = false;
-btn.innerHTML = '<i class="fas fa-user-plus"></i> Create Account';
-}
-});
-// Sign Out
-document.getElementById('btnLogout').addEventListener('click', function() {
-clearSession();
-document.getElementById('userMenu').classList.remove('show');
-trackEvent('/sign-out', 'User signed out');
-});
-// Init Auth
-updateAuthUI();
+
 // =============================================
 // ARTICLES PAGE FUNCTIONALITY
 // =============================================
