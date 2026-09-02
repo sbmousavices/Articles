@@ -200,6 +200,35 @@ nav {
     box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
 }
 
+/* ✅ FLOATING BACK TO DIGITAL CARD BUTTON */
+.floating-back-btn {
+    position: fixed;
+    top: calc(var(--nav-height) + 15px); /* Exactly below navbar with small gap */
+    right: 5%; /* Aligned to the right side */
+    z-index: 999; /* Below nav but above content */
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0.5rem 1.2rem;
+    background: rgba(10, 22, 40, 0.8);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--accent);
+    border-radius: 50px;
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.floating-back-btn:hover {
+    background: var(--accent);
+    color: var(--bg-primary);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+}
+
 /* Mobile Menu Toggle */
 .mobile-menu-btn {
     display: none;
@@ -371,6 +400,13 @@ footer p { color: var(--text-secondary); font-size: 0.9rem; }
     .search-filter-section { flex-direction: column; } .search-box { max-width: 100%; }
     .community-stats, .hub-stats { gap: 1rem; } .community-stat-value, .hub-stat-value { font-size: 1.4rem; }
     .article-card.active, .newsletter.active, .community-section.active, .hub-section.active { transform: scale(1.02) translateY(-5px); }
+    /* Adjust floating button for mobile */
+    .floating-back-btn {
+        right: 20px;
+        top: calc(var(--nav-height) + 10px);
+        padding: 0.4rem 1rem;
+        font-size: 0.8rem;
+    }
 }
 
 /* =============================================
@@ -538,10 +574,37 @@ footer p { color: var(--text-secondary); font-size: 0.9rem; }
         height: 60vh;
     }
 }
+
+/* ✅ PRINT STYLES */
+@media print {
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    nav, footer, .bg-shapes, .community-section, .hub-section, .newsletter, .no-results, .floating-back-btn, #custom-chat-wrapper, #chat-box {
+        display: none !important;
+    }
+    body { background: #ffffff !important; color: #000000 !important; overflow: visible !important; padding-top: 0 !important; }
+    .page-header { padding: 2rem 0 !important; margin-bottom: 2rem !important; }
+    .page-header h1 { font-size: 2rem !important; color: #000 !important; -webkit-text-fill-color: #000 !important; }
+    .stats-strip { background: #f0f0f0 !important; border: 1px solid #ccc !important; color: #000 !important; }
+    .stat-box .stat-number, .stat-box .stat-label { color: #000 !important; }
+    .articles-grid { display: block !important; width: 100% !important; }
+    .article-card { break-inside: avoid !important; page-break-inside: avoid !important; width: 100% !important; max-width: 100% !important; margin-bottom: 25px !important; display: block !important; border: 1px solid #ddd !important; background: #fff !important; box-shadow: none !important; transform: none !important; transition: none !important; border-radius: 8px !important; }
+    .article-title, .article-category { color: #000 !important; }
+    .article-description, .article-meta-item { color: #333 !important; }
+    .article-banner { height: 100px !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    .article-banner i { filter: none !important; }
+    .btn-article { border: 1px solid #ccc !important; background: #f9f9f9 !important; color: #000 !important; box-shadow: none !important; }
+    .section-title { color: #000 !important; -webkit-text-fill-color: #000 !important; }
+    .section-subtitle { color: #333 !important; }
+}
 </style>
 </head>
 <body>
 <div class="bg-shapes"></div>
+
+<!-- ✅ FLOATING BACK TO DIGITAL CARD BUTTON (BELOW NAV, RIGHT SIDE) -->
+<a href="https://sbmousavices.github.io/Theme/digital-card-en.html" class="floating-back-btn">
+    <i class="fas fa-arrow-left"></i> Back to Digital Card
+</a>
 
 <!-- ✅ UNIFIED NAVIGATION BAR -->
 <nav>
